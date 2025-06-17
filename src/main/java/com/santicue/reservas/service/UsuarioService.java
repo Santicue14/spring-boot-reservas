@@ -21,6 +21,26 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public Usuario login(Usuario usuario) {
+        if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
+            throw new RuntimeException("El email es requerido");
+        }
+        if (usuario.getContrasena() == null || usuario.getContrasena().trim().isEmpty()) {
+            throw new RuntimeException("La contraseña es requerida");
+        }
+
+        Usuario userExiste = usuarioRepository.findByEmail(usuario.getEmail());
+        if (userExiste == null) {
+            throw new RuntimeException("Usuario no existe");
+        }
+
+        if (!userExiste.getContrasena().equals(usuario.getContrasena())) {
+            throw new RuntimeException("Contraseña incorrecta");
+        }
+
+        return userExiste;
+    }
+
     public Optional<Usuario> findById(Integer id) {
         return usuarioRepository.findById(id);
     }
