@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
@@ -35,8 +35,8 @@ public class UsuarioController {
         try {
             Usuario usuario = new Usuario();
             usuario.setEmail(requestBody.get("email"));
-            usuario.setContrasena(requestBody.get("password"));
-            return ResponseEntity.ok(usuarioService.login(usuario));
+            usuario.setContrasena(requestBody.get("contrasena"));
+            return ResponseEntity.ok(Map.of("usuario", usuarioService.login(usuario)));
         } catch (RuntimeException e) {
             return ResponseEntity.status(401).body(Map.of("message", e.getMessage()));
         }

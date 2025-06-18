@@ -22,13 +22,6 @@ public class UsuarioService {
     }
 
     public Usuario login(Usuario usuario) {
-        if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
-            throw new RuntimeException("El email es requerido");
-        }
-        if (usuario.getContrasena() == null || usuario.getContrasena().trim().isEmpty()) {
-            throw new RuntimeException("La contraseña es requerida");
-        }
-
         Usuario userExiste = usuarioRepository.findByEmail(usuario.getEmail());
         if (userExiste == null) {
             throw new RuntimeException("Usuario no existe");

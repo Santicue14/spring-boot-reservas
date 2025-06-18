@@ -2,10 +2,9 @@ package com.santicue.reservas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
-@CrossOrigin(origins = "http://localhost:4200")
+//Quitar cors origin para que funcione en local
 public class ReservasApplication {
 
 	public static void main(String[] args) {
